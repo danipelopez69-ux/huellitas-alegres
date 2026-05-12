@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas Alegres - Cuidado y Amor para tu Mascota</title>
+    <meta name="description" content="Huellitas Alegres - Servicios profesionales de cuidado para mascotas en Bocagrande, Cartagena. Baño, corte, veterinaria y productos para tu perro.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navegación */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff6b35;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-logo i {
+    font-size: 1.8rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #ff6b35;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ff6b35;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ff6b35;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 20px;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Carrito de Compras */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.cart-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.cart-items {
+    padding: 1rem 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f2f6;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-image .fallback-icon {
+    color: #ff6b35;
+    font-size: 1.5rem;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.cart-item-price {
+    color: #ff6b35;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.quantity-btn:hover {
+    background: #f8f9fa;
+}
+
+.quantity-display {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.cart-footer {
+    padding: 2rem;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.cart-total-price {
+    color: #ff6b35;
+    font-size: 1.5rem;
+}
+
+.cart-checkout {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cart-checkout:hover {
+    transform: translateY(-2px);
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #7f8c8d;
+}
+
+.cart-empty i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #bdc3c7;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.cart-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sección Hero */
+.hero {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.highlight {
+    color: #ff6b35;
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #ffa726);
+    border-radius: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: #5d6d7e;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ff6b35;
+    border: 2px solid #ff6b35;
+}
+
+.btn-secondary:hover {
+    background: #ff6b35;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-avatar {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 8px solid white;
+    position: relative;
+    background: linear-gradient(45deg, #ff6b35, #ffa726);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-avatar::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #ff6b35, #ffa726, #ff6b35);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.hero-avatar .fallback-icon {
+    font-size: 8rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Secciones generales */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #ffa726);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Sección About */
+.about {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: #5d6d7e;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-3px);
+}
+
+.skill-item i {
+    font-size: 1.5rem;
+    color: #ff6b35;
+}
+
+.skill-item span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff6b35;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Sección Services */
+.services {
+    padding: 80px 0;
+    background: white;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #f1f2f6;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.service-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.service-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff6b35;
+    margin-bottom: 1.5rem;
+}
+
+.service-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.service-features li {
+    padding: 0.5rem 0;
+    color: #5d6d7e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.service-features li i {
+    color: #27ae60;
+    font-size: 0.9rem;
+}
+
+.add-to-cart {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+}
+
+/* Sección Tienda */
+.shop {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.shop-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.category-filter {
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid #e1e8ed;
+    border-radius: 25px;
+    color: #5d6d7e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: #ff6b35;
+    color: white;
+    border-color: #ff6b35;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-image .fallback-icon {
+    font-size: 3rem;
+    color: #bdc3c7;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff6b35;
+    margin-bottom: 1rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-add-cart {
+    flex: 1;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add-cart:hover {
+    transform: translateY(-2px);
+}
+
+/* Sección Contact */
+.contact {
+    padding: 80px 0;
+    background: white;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.contact-info {
+    background: #f8f9fa;
+    padding: 3rem;
+    border-radius: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-item i {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.contact-item div h4 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.contact-item div p {
+    color: #7f8c8d;
+}
+
+.contact-form {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ff6b35;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b35, #ffa726);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+}
+
+/* Footer */
+.footer {
+    background: #2c3e50;
+    color: white;
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: #ff6b35;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.footer-section p,
+.footer-section li {
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ff6b35;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: #34495e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #ff6b35;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #34495e;
+    color: #95a5a6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-avatar {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-avatar .fallback-icon {
+        font-size: 6rem;
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Notificación de producto añadido */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: #27ae60;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1002;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification i {
+    margin-right: 0.5rem;
+}
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">
+                    <i class="fas fa-paw"></i>
+                    Huellitas Alegres
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Inicio</a></li>
+                <li><a href="#about" class="nav-link">Nosotros</a></li>
+                <li><a href="#services" class="nav-link">Servicios</a></li>
+                <li><a href="#shop" class="nav-link">Tienda</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <li>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-toggle" onclick="toggleMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrito de Compras -->
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="cart-close" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Tu carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotal">$0</span>
+            </div>
+            <button class="cart-checkout" onclick="checkout()">
+                <i class="fas fa-credit-card"></i>
+                Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Producto añadido al carrito</span>
+    </div>
+
+    <!-- Sección Hero -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Cuidado y <span class="highlight">Amor</span><br>
+                    para tu Mascota
+                </h1>
+                <p class="hero-subtitle">Huellitas Alegres</p>
+                <p class="hero-description">
+                    Brindamos servicios profesionales de cuidado para mascotas en Bocagrande, Cartagena. 
+                    Desde baño y corte hasta atención veterinaria, tu mascota estará en las mejores manos.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">Ver Servicios</a>
+                    <a href="#contact" class="btn btn-secondary">Contactar</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-avatar">
+                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Perro feliz" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <i class="fas fa-heart fallback-icon" style="display: none;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre Nosotros</h2>
+                <p class="section-subtitle">
+                    Más de 5 años cuidando a las mascotas de Cartagena con amor y profesionalismo
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        En Huellitas Alegres, entendemos que tu mascota es parte de tu familia. Por eso, 
+                        ofrecemos servicios de cuidado integral con el más alto estándar de calidad y 
+                        dedicación en Bocagrande, Cartagena.
+                    </p>
+                    <p>
+                        Nuestro equipo de profesionales certificados se especializa en el bienestar 
+                        animal, garantizando que cada mascota reciba la atención personalizada que merece.
+                    </p>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <i class="fas fa-cut"></i>
+                            <span>Peluquería</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-shower"></i>
+                            <span>Baño</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>Veterinaria</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-home"></i>
+                            <span>Guardería</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-bone"></i>
+                            <span>Alimentación</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Cuidado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>Mascotas Felices</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>5+</h3>
+                        <p>Años de Experiencia</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Atención Disponible</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p class="section-subtitle">
+                    Servicios completos para el cuidado y bienestar de tu mascota
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shower"></i>
+                    </div>
+                    <h3>Baño y Spa</h3>
+                    <p>Baño completo con productos premium, secado, cepillado y aromatización para que tu mascota luzca y se sienta increíble.</p>
+                    <div class="service-price">$45.000</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Shampoo premium</li>
+                        <li><i class="fas fa-check"></i> Secado profesional</li>
+                        <li><i class="fas fa-check"></i> Cepillado completo</li>
+                        <li><i class="fas fa-check"></i> Aromatización</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Baño y Spa', 45000, 'fas fa-shower')">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Corte y Peluquería</h3>
+                    <p>Corte profesional adaptado a la raza y preferencias del dueño. Incluye limpieza de oídos y corte de uñas.</p>
+                    <div class="service-price">$60.000</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Corte personalizado</li>
+                        <li><i class="fas fa-check"></i> Limpieza de oídos</li>
+                        <li><i class="fas fa-check"></i> Corte de uñas</li>
+                        <li><i class="fas fa-check"></i> Estilizado</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Corte y Peluquería', 60000, 'fas fa-cut')">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Consulta Veterinaria</h3>
+                    <p>Revisión médica completa con veterinario certificado. Incluye diagnóstico y recomendaciones de tratamiento.</p>
+                    <div class="service-price">$80.000</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Examen físico completo</li>
+                        <li><i class="fas fa-check"></i> Diagnóstico profesional</li>
+                        <li><i class="fas fa-check"></i> Plan de tratamiento</li>
+                        <li><i class="fas fa-check"></i> Seguimiento incluido</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Consulta Veterinaria', 80000, 'fas fa-stethoscope')">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Guardería Diaria</h3>
+                    <p>Cuidado diario en nuestras instalaciones con actividades, alimentación y supervisión constante.</p>
+                    <div class="service-price">$35.000</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Supervisión 8 horas</li>
+                        <li><i class="fas fa-check"></i> Actividades recreativas</li>
+                        <li><i class="fas fa-check"></i> Alimentación incluida</li>
+                        <li><i class="fas fa-check"></i> Socialización</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Guardería Diaria', 35000, 'fas fa-home')">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3>Vacunación</h3>
+                    <p>Plan completo de vacunación según la edad y necesidades de tu mascota. Incluye certificado de vacunación.</p>
+                    <div class="service-price">$50.000</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Vacunas certificadas</li>
+                        <li><i class="fas fa-check"></i> Carnet de vacunación</li>
+                        <li><i class="fas fa-check"></i> Seguimiento médico</li>
+                        <li><i class="fas fa-check"></i> Recordatorios</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Vacunación', 50000, 'fas fa-syringe')">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Paquete Completo</h3>
+                    <p>Servicio integral que incluye baño, corte, consulta veterinaria y cuidado especial. La mejor opción para tu mascota.</p>
+                    <div class="service-price">$150.000</div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Todos los servicios</li>
+                        <li><i class="fas fa-check"></i> Descuento especial</li>
+                        <li><i class="fas fa-check"></i> Atención prioritaria</li>
+                        <li><i class="fas fa-check"></i> Garantía extendida</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('Paquete Completo', 150000, 'fas fa-heart')">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Tienda -->
+    <section id="shop" class="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tienda de Productos</h2>
+                <p class="section-subtitle">
+                    Los mejores productos para el cuidado y entretenimiento de tu mascota
+                </p>
+            </div>
+            
+            <div class="shop-categories">
+                <button class="category-filter active" onclick="filterProducts('all')">Todos</button>
+                <button class="category-filter" onclick="filterProducts('food')">Alimentos</button>
+                <button class="category-filter" onclick="filterProducts('toys')">Juguetes</button>
+                <button class="category-filter" onclick="filterProducts('accessories')">Accesorios</button>
+                <button class="category-filter" onclick="filterProducts('hygiene')">Higiene</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Alimentos -->
+                <div class="product-card" data-category="food">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Alimento Premium" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-bone fallback-icon" style="display: none;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Alimento Premium Adulto</h3>
+                        <p class="product-description">Alimento balanceado para perros adultos con ingredientes naturales y vitaminas esenciales.</p>
+                        <div class="product-price">$85.000</div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart('Alimento Premium Adulto', 85000, 'fas fa-bone')">
+                                <i class="fas fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Juguetes -->
+                <div class="product-card" data-category="toys">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Pelota Interactiva" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-baseball-ball fallback-icon" style="display: none;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pelota Interactiva</h3>
+                        <p class="product-description">Pelota resistente con sonidos que mantendrá entretenido a tu perro por horas.</p>
+                        <div class="product-price">$25.000</div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart('Pelota Interactiva', 25000, 'fas fa-baseball-ball')">
+                                <i class="fas fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesorios -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Collar Elegante" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-circle fallback-icon" style="display: none;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Collar Elegante</h3>
+                        <p class="product-description">Collar de cuero genuino con hebilla resistente y placa de identificación incluida.</p>
+                        <div class="product-price">$40.000</div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart('Collar Elegante', 40000, 'fas fa-circle')">
+                                <i class="fas fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Higiene -->
+                <div class="product-card" data-category="hygiene">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Shampoo Natural" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-pump-soap fallback-icon" style="display: none;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Shampoo Natural</h3>
+                        <p class="product-description">Shampoo con ingredientes naturales, libre de químicos agresivos, ideal para pieles sensibles.</p>
+                        <div class="product-price">$30.000</div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart('Shampoo Natural', 30000, 'fas fa-pump-soap')">
+                                <i class="fas fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Más productos -->
+                <div class="product-card" data-category="food">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Snacks Naturales" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-cookie-bite fallback-icon" style="display: none;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Snacks Naturales</h3>
+                        <p class="product-description">Premios naturales para entrenar a tu mascota, hechos con ingredientes orgánicos.</p>
+                        <div class="product-price">$20.000</div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart('Snacks Naturales', 20000, 'fas fa-cookie-bite')">
+                                <i class="fas fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="toys">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Cuerda de Juego" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-rope fallback-icon" style="display: none;"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Cuerda de Juego</h3>
+                        <p class="product-description">Cuerda resistente para juegos de tira y afloja, ayuda a mantener los dientes limpios.</p>
+                        <div class="product-price">$15.000</div>
+                        <div class="product-actions">
+                            <button class="btn-add-cart" onclick="addToCart('Cuerda de Juego', 15000, 'fas fa-rope')">
+                                <i class="fas fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-subtitle">
+                    Estamos aquí para cuidar a tu mascota. ¡Contáctanos hoy mismo!
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Bocagrande, Cartagena<br>Colombia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+57 300 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@huellitasalegres.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horarios</h4>
+                            <p>Lun - Sáb: 8:00 AM - 6:00 PM<br>Dom: 9:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pet">Nombre de tu Mascota</label>
+                            <input type="text" id="pet" name="pet" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" placeholder="Cuéntanos sobre tu mascota y qué servicios necesitas..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Huellitas Alegres</h3>
+                    <p>Cuidamos a tu mascota como si fuera nuestra. Servicios profesionales de calidad en Bocagrande, Cartagena.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#services">Baño y Spa</a></li>
+                        <li><a href="#services">Corte y Peluquería</a></li>
+                        <li><a href="#services">Consulta Veterinaria</a></li>
+                        <li><a href="#services">Guardería</a></li>
+                        <li><a href="#services">Vacunación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#services">Servicios</a></li>
+                        <li><a href="#shop">Tienda</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Bocagrande, Cartagena</li>
+                        <li>+57 300 123 4567</li>
+                        <li>info@huellitasalegres.com</li>
+                        <li>Lun - Sáb: 8:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Huellitas Alegres. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Variables globales
+        let cart = [];
+        let cartTotal = 0;
+
+        // Navegación móvil
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        }
+
+        // Carrito de compras
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartOverlay = document.querySelector('.cart-overlay');
+            
+            cartSidebar.classList.toggle('active');
+            cartOverlay.classList.toggle('active');
+        }
+
+        function addToCart(name, price, icon) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    icon: icon,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            showNotification(`${name} añadido al carrito`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                updateCartDisplay();
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartFooter = document.getElementById('cartFooter');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Tu carrito está vacío</p>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+                cartCount.style.display = 'none';
+            } else {
+                let total = 0;
+                let totalItems = 0;
+                
+                cartItems.innerHTML = cart.map((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    totalItems += item.quantity;
+                    
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-image">
+                                <i class="${item.icon} fallback-icon"></i>
+                            </div>
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">$${item.price.toLocaleString()}</div>
+                                <div class="cart-item-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                                    <span class="quantity-display">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                                    <button class="remove-item" onclick="removeFromCart(${index})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                cartTotal.textContent = `$${total.toLocaleString()}`;
+                cartCount.textContent = totalItems;
+                cartCount.style.display = 'flex';
+                cartFooter.style.display = 'block';
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemsList = cart.map(item => `${item.name} x${item.quantity}`).join('\n');
+            
+            alert(`¡Gracias por tu compra!\n\nProductos:\n${itemsList}\n\nTotal: $${total.toLocaleString()}\n\nNos pondremos en contacto contigo para coordinar la entrega.`);
+            
+            cart = [];
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Filtros de productos
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const filters = document.querySelectorAll('.category-filter');
+            
+            // Actualizar botones activos
+            filters.forEach(filter => filter.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Mostrar/ocultar productos
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Formulario de contacto
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simular envío del formulario
+            alert(`¡Gracias ${data.name}!\n\nHemos recibido tu mensaje sobre ${data.pet}. Nos pondremos en contacto contigo pronto al ${data.phone}.`);
+            
+            event.target.reset();
+        }
+
+        // Smooth scrolling para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Cerrar menú móvil si está abierto
+                const navMenu = document.querySelector('.nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animaciones
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.service-card, .product-card, .stat-item, .skill-item');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // Cerrar carrito al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartIcon = document.querySelector('.cart-icon');
+            
+            if (!cartSidebar.contains(e.target) && !cartIcon.contains(e.target) && cartSidebar.classList.contains('active')) {
+                toggleCart();
+            }
+        });
+
+        // Navbar transparente al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
